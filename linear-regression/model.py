@@ -15,3 +15,4 @@ class linear_regression:
     def predict(self, X):
         pass
     
+    
