@@ -63,6 +63,7 @@ y_pred_0= regressor.predict(X_test_conv)
 print(y_pred_0)
     #apply metrics on the model
 
+
 regressor_1 = LinearRegression()
 X_train_conv_1 = X_train_conv_1.astype(np.float64)
 y_train_conv_1 = y_train_conv_1.astype(np.float64)
@@ -178,6 +179,13 @@ for train_index, test_index in repeated_kfold.split(X):
     #shuffle-and-split
     #stratified k-fold
     #stratified-shuffle-split
+
+##############metrices that can be added for regression models are###############
+    #mean square error
+    #root mean squared error
+    #mean absolute error
+    #R squared or coefficient of determination
+    #adjusted R squared
 
 ########################################################################################################################################
 
