@@ -11,6 +11,9 @@ from sklearn.model_selection import train_test_split
 from sklearn.model_selection import RepeatedKFold
 from sklearn.linear_model import LinearRegression
 from sklearn import metrics
+from sklearn.preprocessing import StandardScaler 
+from sklearn.decomposition import PCA  
+
 #X,y = datasets.make_regression(n_samples=100, n_features=1, noise =20)
 #X_train, X_test, y_train, y_test = train_test_split(X,y, test_size=0.2)
 
@@ -26,7 +29,9 @@ X= dataset.iloc[:, :-2].values
 y_methyl_mercury=dataset.iloc[:, 7].values
 y_total_mercury=dataset.iloc[:, 7].values
 
-#applying one-hot encoding for fishermen and fishpart columns
+
+#preprocessing
+#one-hot encoding for fishermen and fishpart columns
 columnTransformer = ColumnTransformer([('encoder', 
 										OneHotEncoder(), 
 										[0])], 
@@ -40,6 +45,14 @@ columnTransformer = ColumnTransformer([('encoder',
 									remainder='passthrough') 
 
 X = np.array(columnTransformer.fit_transform(X), dtype = np.str)
+
+#feature scaling
+sc = StandardScaler() 
+X = sc.fit_transform(X)
+
+#applying principle component analysis
+pca = PCA(n_components = 2) 
+X = pca.fit_transform(X) 
 
 #print(X)
 
@@ -66,7 +79,7 @@ print(y_pred_0)
 mae = metrics.mean_absolute_error(y_test_conv, y_pred_0)
 mse = metrics.mean_squared_error(y_test_conv, y_pred_0)
 print('Mean Absolute Error:', mae)  
-print('Mean Squared Error:', mae)  
+print('Mean Squared Error:', mse)  
 rms = np.sqrt(mse)
 print('Root Mean Squared Error:', rms)
 
@@ -83,7 +96,7 @@ print(y_pred_0_1)
 mae_ = metrics.mean_absolute_error(y_test_conv_1, y_pred_0_1)
 mse = metrics.mean_squared_error(y_test_conv_1, y_pred_0_1)
 print('Mean Absolute Error:', mae)  
-print('Mean Squared Error:', mae)  
+print('Mean Squared Error:', mse)  
 rms = np.sqrt(mse)
 print('Root Mean Squared Error:', rms)
 
@@ -119,7 +132,7 @@ for train_index, test_index in kfold.split(X):
     mae_ = metrics.mean_absolute_error(y_test, y_pred_1)
     mse = metrics.mean_squared_error(y_test, y_pred_1)
     print('Mean Absolute Error:', mae)  
-    print('Mean Squared Error:', mae)  
+    print('Mean Squared Error:', mse)  
     rms = np.sqrt(mse)
     print('Root Mean Squared Error:', rms)
 
@@ -149,7 +162,7 @@ for train_index, test_index in kfold_1.split(X):
     mae_ = metrics.mean_absolute_error(y_test_1, y_pred_1_1)
     mse = metrics.mean_squared_error(y_test_1, y_pred_1_1)
     print('Mean Absolute Error:', mae)  
-    print('Mean Squared Error:', mae)  
+    print('Mean Squared Error:', mse)  
     rms = np.sqrt(mse)
     print('Root Mean Squared Error:', rms)
     #################################################################
@@ -181,7 +194,7 @@ for train_index, test_index in repeated_kfold.split(X):
     mae_ = metrics.mean_absolute_error(y_test, y_pred_1)
     mse = metrics.mean_squared_error(y_test, y_pred_1)
     print('Mean Absolute Error:', mae)  
-    print('Mean Squared Error:', mae)  
+    print('Mean Squared Error:', mse)  
     rms = np.sqrt(mse)
     print('Root Mean Squared Error:', rms)
 
@@ -209,7 +222,7 @@ for train_index, test_index in repeated_kfold.split(X):
     mae_ = metrics.mean_absolute_error(y_test_1, y_pred_2_1)
     mse = metrics.mean_squared_error(y_test_1, y_pred_2_1)
     print('Mean Absolute Error:', mae)  
-    print('Mean Squared Error:', mae)  
+    print('Mean Squared Error:', mse)  
     rms = np.sqrt(mse)
     print('Root Mean Squared Error:', rms)
     
