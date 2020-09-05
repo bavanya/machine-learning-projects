@@ -10,7 +10,7 @@ from sklearn.model_selection import KFold
 from sklearn.model_selection import train_test_split
 from sklearn.model_selection import RepeatedKFold
 from sklearn.linear_model import LinearRegression
-
+from sklearn import metrics
 #X,y = datasets.make_regression(n_samples=100, n_features=1, noise =20)
 #X_train, X_test, y_train, y_test = train_test_split(X,y, test_size=0.2)
 
@@ -61,9 +61,16 @@ regressor.fit(X_train_conv,y_train_conv)
 X_test_conv = X_test_conv.astype(np.float64)
 y_pred_0= regressor.predict(X_test_conv)
 print(y_pred_0)
-    #apply metrics on the model
 
+#applying metrics on the model
+mae = metrics.mean_absolute_error(y_test_conv, y_pred_0)
+mse = metrics.mean_squared_error(y_test_conv, y_pred_0)
+print('Mean Absolute Error:', mae)  
+print('Mean Squared Error:', mae)  
+rms = np.sqrt(mse)
+print('Root Mean Squared Error:', rms)
 
+#calling using sklearn
 regressor_1 = LinearRegression()
 X_train_conv_1 = X_train_conv_1.astype(np.float64)
 y_train_conv_1 = y_train_conv_1.astype(np.float64)
@@ -71,7 +78,14 @@ regressor_1.fit(X_train_conv_1,y_train_conv_1)
 X_test_conv_1 = X_test_conv_1.astype(np.float64)
 y_pred_0_1= regressor.predict(X_test_conv_1)
 print(y_pred_0_1)
-    #apply metrics on the model
+    
+#apply metrics on the model
+mae_ = metrics.mean_absolute_error(y_test_conv_1, y_pred_0_1)
+mse = metrics.mean_squared_error(y_test_conv_1, y_pred_0_1)
+print('Mean Absolute Error:', mae)  
+print('Mean Squared Error:', mae)  
+rms = np.sqrt(mse)
+print('Root Mean Squared Error:', rms)
 
 #################################################################
 
@@ -100,7 +114,14 @@ for train_index, test_index in kfold.split(X):
     X_test = X_test.astype(np.float64)
     y_pred_1= regressor.predict(X_test)
     print(y_pred_1)
-        #apply metrics on the model
+        
+    #apply metrics on the model
+    mae_ = metrics.mean_absolute_error(y_test, y_pred_1)
+    mse = metrics.mean_squared_error(y_test, y_pred_1)
+    print('Mean Absolute Error:', mae)  
+    print('Mean Squared Error:', mae)  
+    rms = np.sqrt(mse)
+    print('Root Mean Squared Error:', rms)
 
     #################################################################
 
@@ -123,7 +144,14 @@ for train_index, test_index in kfold_1.split(X):
     X_test_1 = X_test_1.astype(np.float64)
     y_pred_1_1= regressor.predict(X_test_1)
     print(y_pred_1_1)
-        #apply metrics on the model
+
+    #apply metrics on the model
+    mae_ = metrics.mean_absolute_error(y_test_1, y_pred_1_1)
+    mse = metrics.mean_squared_error(y_test_1, y_pred_1_1)
+    print('Mean Absolute Error:', mae)  
+    print('Mean Squared Error:', mae)  
+    rms = np.sqrt(mse)
+    print('Root Mean Squared Error:', rms)
     #################################################################
 
 ########################################################################################################################################
@@ -148,7 +176,14 @@ for train_index, test_index in repeated_kfold.split(X):
     X_test = X_test.astype(np.float64)
     y_pred_1= regressor.predict(X_test)
     print(y_pred_1)
-        #apply metrics on the model
+
+    #apply metrics on the model
+    mae_ = metrics.mean_absolute_error(y_test, y_pred_1)
+    mse = metrics.mean_squared_error(y_test, y_pred_1)
+    print('Mean Absolute Error:', mae)  
+    print('Mean Squared Error:', mae)  
+    rms = np.sqrt(mse)
+    print('Root Mean Squared Error:', rms)
 
     #################################################################
 
@@ -169,21 +204,25 @@ for train_index, test_index in repeated_kfold.split(X):
     X_test_1 = X_test_1.astype(np.float64)
     y_pred_2_1= regressor.predict(X_test_1)
     print(y_pred_2_1)
-        #apply metrics on the model
+
+    #apply metrics on the model
+    mae_ = metrics.mean_absolute_error(y_test_1, y_pred_2_1)
+    mse = metrics.mean_squared_error(y_test_1, y_pred_2_1)
+    print('Mean Absolute Error:', mae)  
+    print('Mean Squared Error:', mae)  
+    rms = np.sqrt(mse)
+    print('Root Mean Squared Error:', rms)
     
 #########################################################################################################################################
 
-###########################################other cross validation schemes that can be included are:#############################################
+########################################### other cross validation schemes that can be included are:#############################################
     #leave-one-out: 
     #leave-p-out
     #shuffle-and-split
     #stratified k-fold
     #stratified-shuffle-split
 
-##############metrices that can be added for regression models are###############
-    #mean square error
-    #root mean squared error
-    #mean absolute error
+############## metrices that can be added for regression models are###############
     #R squared or coefficient of determination
     #adjusted R squared
 
