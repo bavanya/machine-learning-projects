@@ -54,13 +54,15 @@ X = sc.fit_transform(X)
 pca = PCA(n_components = 2) 
 X = pca.fit_transform(X) 
 
-#print(X)
-
 ########################################################################################################################################
 #split data using train_test_split function
 X_train_conv, X_test_conv, y_train_conv, y_test_conv = train_test_split( X, y_methyl_mercury, test_size=0.2, random_state=0)
 X_train_conv_1, X_test_conv_1, y_train_conv_1, y_test_conv_1 = train_test_split( X, y_total_mercury, test_size=0.2, random_state=0)
-    
+
+#train_pct_index = int(0.8*len(X))  
+#X_train_conv, X_test_conv = X[:train_pct_index], X[train_pct_index:]
+#y_train_conv, y_test_conv = y_methyl_mercury[:train_pct_index], y_methyl_mercury[train_pct_index:]
+
 ################################################################
 #call the regressor model and find error and store it
 
@@ -82,6 +84,10 @@ print('Mean Absolute Error:', mae)
 print('Mean Squared Error:', mse)  
 rms = np.sqrt(mse)
 print('Root Mean Squared Error:', rms)
+
+#mae_scratch = np.abs(np.subtract(y_test_conv,y_pred_0)).mean()
+#mse_scratch = np.square(np.subtract(y_test_conv, y_pred_0)).mean()
+#rms_scratch = np.sqrt(mse_scratch)
 
 #calling using sklearn
 regressor_1 = LinearRegression()
