@@ -31,7 +31,10 @@ y_total_mercury=dataset.iloc[:, 7].values
 
 
 #preprocessing
-#one-hot encoding for fishermen and fishpart columns
+#the dataset has been provided with label encoding
+#converting to make the features binary instead of ordinal.
+#Also to avoid the curse of dimensionality, applied PCA after one hot encoding
+#applying one-hot encoding for fishermen and fishpart columns
 columnTransformer = ColumnTransformer([('encoder', 
 										OneHotEncoder(), 
 										[0])], 
@@ -47,6 +50,7 @@ columnTransformer = ColumnTransformer([('encoder',
 X = np.array(columnTransformer.fit_transform(X), dtype = np.str)
 
 #feature scaling
+#standardization is performed by StandardScaler function
 sc = StandardScaler() 
 X = sc.fit_transform(X)
 
