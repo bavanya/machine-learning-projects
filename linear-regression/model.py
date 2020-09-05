@@ -21,10 +21,8 @@ class linear_regression:
             db = (1/samples_count)*np.sum(y_predict-y)
             self.weights -= self.weights*dw
             self.bias -= self.bias*db
-        #pass
 
     def predict(self, X):
-        pass
         y_pred = np.dot(X, self.weights) + self.bias
         return y_pred
     
