@@ -13,7 +13,7 @@ from sklearn.linear_model import LinearRegression
 from sklearn import metrics
 from sklearn.preprocessing import StandardScaler 
 from sklearn.decomposition import PCA  
-
+import model
 #X,y = datasets.make_regression(n_samples=100, n_features=1, noise =20)
 #X_train, X_test, y_train, y_test = train_test_split(X,y, test_size=0.2)
 
@@ -69,7 +69,13 @@ X_train_conv_1, X_test_conv_1, y_train_conv_1, y_test_conv_1 = train_test_split(
 
 ################################################################
 #call the regressor model and find error and store it
+regressor = model.linear_regression(0.001, 10)
+regressor.fit(X_train_conv,y_train_conv)
+predicted = regressor.predict(X_test_conv)
 
+regressor_1 = model.linear_regression(0.001, 10)
+regressor_1.fit(X_train_conv_1,y_train_conv_1)
+predicted_1 = regressor_1.predict(X_test_conv_1)
 #################################################################
 
 #calling using sklearn
@@ -121,12 +127,11 @@ for train_index, test_index in kfold.split(X):
     X_train, X_test = X[train_index], X[test_index]
     y_train, y_test = y_methyl_mercury[train_index], y_methyl_mercury[test_index]
 
-    X_train_1, X_test_1 = X[train_index], X[test_index]
-    y_train_1, y_test_1 = y_total_mercury[train_index], y_total_mercury[test_index]
-
     ################################################################
     #call the regressor model from another file and find error and append to list
-    
+    regressor = model.linear_regression(0.001, 10)
+    regressor.fit(X_train,y_train)
+    predicted = regressor.predict(X_test)
     #################################################################
 
     #calling using sklearn
@@ -156,7 +161,9 @@ for train_index, test_index in kfold_1.split(X):
 
     ################################################################
     #call the regressor model from another file and find error and append to list
-    
+    regressor_1 = model.linear_regression(0.001, 10)
+    regressor_1.fit(X_train_1,y_train_1)
+    predicted_1 = regressor_1.predict(X_test_1)
     #################################################################
 
     #calling using sklearn
@@ -188,7 +195,9 @@ for train_index, test_index in repeated_kfold.split(X):
 
     ################################################################
     #call the regressor model from another file and find error and append to list
-
+    regressor = model.linear_regression(0.001, 10)
+    regressor.fit(X_train,y_train)
+    predicted = regressor.predict(X_test)
     #################################################################
 
     #calling using sklearn
@@ -216,7 +225,9 @@ for train_index, test_index in repeated_kfold.split(X):
 
     ################################################################
     #call the regressor model from another file and find error and append to list
-    
+    regressor_1 = model.linear_regression(0.001, 10)
+    regressor_1.fit(X_train_1,y_train_1)
+    predicted_1 = regressor_1.predict(X_test_1)
     #################################################################
 
     #calling using sklearn

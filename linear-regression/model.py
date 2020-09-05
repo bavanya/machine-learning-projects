@@ -10,9 +10,22 @@ class linear_regression:
 
     def fit(self, X, y):
         #implement forward pass and back propagation
-        pass
+        samples_count, features_count = X.shape
+        self.weights = np.random.rand(features_count)
+        self.bias = 0
+
+        for _ in range(self.maximum_iterations):
+            y_predict = np.dot(X, self.weights) + self.bias
+
+            dw = (1/samples_count)*np.dot(X.T, (y_predict-y))
+            db = (1/samples_count)*np.sum(y_predict-y)
+            self.weights -= self.weights*dw
+            self.bias -= self.bias*db
+        #pass
 
     def predict(self, X):
         pass
+        y_pred = np.dot(X, self.weights) + self.bias
+        return y_pred
     
     
