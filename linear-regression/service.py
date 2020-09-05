@@ -1,19 +1,19 @@
 #importing libraries
+#from sklearn import datasets
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-from sklearn import datasets
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import OneHotEncoder
 from sklearn.compose import ColumnTransformer 
 from sklearn.model_selection import KFold
-from sklearn.model_selection import train_test_split
 from sklearn.model_selection import RepeatedKFold
 from sklearn.linear_model import LinearRegression
 from sklearn import metrics
 from sklearn.preprocessing import StandardScaler 
 from sklearn.decomposition import PCA  
 import model
+
 #X,y = datasets.make_regression(n_samples=100, n_features=1, noise =20)
 #X_train, X_test, y_train, y_test = train_test_split(X,y, test_size=0.2)
 
